@@ -10,8 +10,8 @@ require (
 // services v0.0.0
 )
 
-replace routes => ./routes
+replace routes => ./src/routes
 
-replace services => ./services
+replace services => ./src/services
 
-replace models => ./models
+replace models => ./src/models
