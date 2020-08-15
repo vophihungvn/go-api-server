@@ -10,6 +10,7 @@ import (
 
 func main() {
 	models.InitDb()
+	defer models.CloseDB()
 	r := gin.Default()
 	routes.SetupRoute(r)
 	r.Run()

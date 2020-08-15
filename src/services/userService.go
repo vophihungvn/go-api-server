@@ -1,19 +1,18 @@
 package services
 
-type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+import (
+	models "models"
+)
+
+//GetUserList func
+func GetUserList() []models.User {
+	users := models.UserRepository.GetAll()
+	return users
 }
 
-func GetUserList() []User {
-	return []User{
-		{
-			Username: "user 1",
-			Password: "123456",
-		},
-		{
-			Username: "user 2",
-			Password: "123456",
-		},
-	}
+// CreateUser func
+func CreateUser(username string, password string) models.User {
+	user := models.User{Username: username, Password: password}
+	user.Create()
+	return user
 }
