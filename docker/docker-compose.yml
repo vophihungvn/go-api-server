@@ -1,0 +1,14 @@
+version: "3.0"
+
+services:
+  postgresql:
+    image: postgres:12.4
+    environment:
+      POSTGRES_DB: gormigrate_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5433:5432"
+    volumes:
+      - "./data:/var/lib/postgresql/data"
