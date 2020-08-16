@@ -12,6 +12,17 @@ func GetUserList() []models.User {
 
 // CreateUser func
 func CreateUser(user models.User) models.User {
-
 	return models.UserRepository.Create(&user)
+}
+
+//UpdateUser func
+func UpdateUser(id string, updatingData map[string]interface{}) (models.User, error) {
+	user, err := models.UserRepository.FindByID(id)
+
+	if err != nil {
+		return user, err
+	}
+
+	models.UserRepository.Update(&user, updatingData)
+	return user, nil
 }
