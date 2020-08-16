@@ -48,3 +48,8 @@ func (ur userRepository) Update(user *User, updatingData map[string]interface{})
 
 	return *user
 }
+
+// Delete user
+func (ur userRepository) Delete(user *User) error {
+	return ur.db.Delete(user).Error
+}

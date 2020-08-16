@@ -46,6 +46,25 @@ func updateUser(c *gin.Context) {
 	})
 }
 
+func deleteUser(c *gin.Context) {
+	id := c.Param("id")
+	err := services.DeleteUser(id)
+
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "fail",
+			"message": "User not found or some error happened",
+			"detail":  err.Error(),
+		})
+
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"status": "success",
+	})
+}
+
 // SetupUserRoute setup user route
 func setupUserRoute(c *gin.Engine) {
 	userRoute := c.Group("/api/users")
@@ -53,5 +72,6 @@ func setupUserRoute(c *gin.Engine) {
 		userRoute.GET("/", getUserInfo)
 		userRoute.POST("/", createUser)
 		userRoute.PUT("/:id", updateUser)
+		userRoute.DELETE("/:id", deleteUser)
 	}
 }

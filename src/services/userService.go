@@ -26,3 +26,15 @@ func UpdateUser(id string, updatingData map[string]interface{}) (models.User, er
 	models.UserRepository.Update(&user, updatingData)
 	return user, nil
 }
+
+//DeleteUser func
+func DeleteUser(id string) error {
+	user, err := models.UserRepository.FindByID(id)
+
+	if err != nil {
+		return err
+	}
+
+	models.UserRepository.Delete(&user)
+	return nil
+}
