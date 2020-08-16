@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/jinzhu/gorm"
 	"gopkg.in/gormigrate.v1"
@@ -19,7 +20,7 @@ var (
 func InitDb() {
 
 	// init db instance
-	db, err := gorm.Open("postgres", "host=localhost port=5433 user=postgres dbname=gormigrate_test password=postgres sslmode=disable")
+	db, err := gorm.Open("postgres", os.Getenv("DB_CONFIG"))
 	if err != nil {
 		log.Fatal(err)
 	}
