@@ -6,7 +6,7 @@ import (
 
 // User model
 type User struct {
-	gorm.Model
+	BaseModel
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
@@ -16,8 +16,11 @@ type userRepository struct {
 }
 
 // Create user function
-func (u User) Create() {
-	dbInstance.Save(&u)
+func (ur userRepository) Create(user *User) User {
+
+	ur.db.Create(&user)
+
+	return *user
 }
 
 // GetAllUser function

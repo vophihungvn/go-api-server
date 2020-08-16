@@ -11,8 +11,7 @@ func GetUserList() []models.User {
 }
 
 // CreateUser func
-func CreateUser(username string, password string) models.User {
-	user := models.User{Username: username, Password: password}
-	user.Create()
-	return user
+func CreateUser(user models.User) models.User {
+
+	return models.UserRepository.Create(&user)
 }
